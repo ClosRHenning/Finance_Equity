@@ -1,27 +1,356 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandat – Kommerzielle Kompetenz für Consultants</title>
+  <meta name="description" content="Die persönliche Lernplattform, die Consultants befähigt, Folgemandate zu erkennen und zu gewinnen – mit SPIN, MEDDPICC und Consultative Selling." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    header.site {
+      position: sticky; top: 0; z-index: 10; background: rgba(247, 245, 241, .92);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+    }
+    header.site .container { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+    header.site nav { display: flex; gap: 22px; align-items: center; }
+    header.site nav a.link { text-decoration: none; color: var(--ink-2); font-weight: 500; font-size: .95rem; }
+    header.site nav a.link:hover { color: var(--accent); }
+    @media (max-width: 860px) { header.site nav a.link { display: none; } }
+
+    section { padding: 88px 0; }
+    section.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .section-head { max-width: 720px; margin-bottom: 44px; }
+    .section-head p { font-size: 1.1rem; color: var(--muted); }
+
+    /* Hero */
+    .hero { padding: 72px 0 88px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+    .hero p.lead { font-size: 1.2rem; color: var(--ink-2); max-width: 560px; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-note { margin-top: 18px; font-size: .9rem; color: var(--muted); }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    .mock { position: relative; }
+    .mock .card { padding: 20px; }
+    .mock-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .mock-title { font-weight: 700; }
+    .mock-meta { font-size: .85rem; color: var(--muted); }
+    .progress { height: 8px; background: #eee9e1; border-radius: 99px; overflow: hidden; }
+    .progress > i { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+    .mock-steps { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
+    .mock-steps li { display: flex; gap: 10px; align-items: center; font-size: .93rem; }
+    .dot { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: .75rem; font-weight: 700; flex: none; }
+    .dot.done { background: var(--good); color: #fff; }
+    .dot.now { background: var(--accent); color: #fff; }
+    .dot.todo { background: #eee9e1; color: var(--muted); }
+    .mock-float {
+      position: relative; width: 260px; margin: -12px -14px 0 auto; padding: 14px 16px;
+      font-size: .88rem;
+    }
+    .mock-float b { display: block; margin-bottom: 4px; }
+    @media (max-width: 520px) { .mock-float { width: auto; margin: 14px 0 0; } }
+
+    /* Grids */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    @media (max-width: 960px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 760px) { .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+    .pain .num { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 12px; }
+    .quote {
+      margin-top: 36px; padding: 24px 28px; border-left: 4px solid var(--accent); background: var(--surface);
+      border-radius: 0 var(--radius) var(--radius) 0; font-size: 1.15rem; color: var(--ink-2);
+    }
+
+    .step .n {
+      width: 40px; height: 40px; border-radius: 12px; background: var(--ink); color: #fff;
+      display: grid; place-items: center; font-weight: 800; margin-bottom: 14px;
+    }
+
+    .method h3 { display: flex; align-items: center; gap: 10px; }
+    .method ul { padding-left: 1.1em; margin: 12px 0 0; color: var(--ink-2); }
+    .method li { margin-bottom: 6px; }
+    .method .translate { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); font-size: .92rem; color: var(--muted); }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+    .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+    .checklist li { display: flex; gap: 12px; }
+    .checklist li::before {
+      content: "✓"; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--good-soft);
+      color: var(--good); display: grid; place-items: center; font-weight: 800; font-size: .8rem; margin-top: 2px;
+    }
+    .privacy { background: var(--ink); color: #fff; border: none; }
+    .privacy h3 { color: #fff; }
+    .privacy p, .privacy li { color: #d5dde6; }
+    .privacy ul { padding-left: 1.1em; margin: 0; }
+
+    .pilot { background: var(--ink); color: #fff; }
+    .pilot .section-head p { color: #c6d1dc; }
+    .pilot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    @media (max-width: 900px) { .pilot-grid { grid-template-columns: 1fr; } }
+    .pilot .checklist li { color: #e3e9ef; }
+    .pilot .checklist li::before { background: rgba(255,255,255,.12); color: #fff; }
+    form.card { color: var(--ink); }
+    label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%; font: inherit; padding: .7em .85em; border: 1.5px solid var(--line); border-radius: 10px;
+      background: #fff; color: var(--ink); margin-bottom: 14px;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    .form-ok { display: none; padding: 14px; background: var(--good-soft); color: #1f5a40; border-radius: 10px; font-weight: 500; }
+
+    footer { padding: 36px 0; font-size: .9rem; color: var(--muted); }
+    footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="de"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Führe mich zum Zaster&lt;/title&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Get the Party startet&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;p&gt;Willkommen bei meinem ersten Schritt zum Reichtum Pages.&lt;/p&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<header class="site">
+  <div class="container">
+    <a class="logo" href="#"><span class="logo-mark">M<span>.</span></span>Mandat</a>
+    <nav>
+      <a class="link" href="#problem">Problem</a>
+      <a class="link" href="#ansatz">Ansatz</a>
+      <a class="link" href="#methodik">Methodik</a>
+      <a class="link" href="#partner">Für Partner</a>
+      <a class="btn btn-dark btn-sm" href="demo.html">Demo ansehen</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Für Partner &amp; Practice Leads in Beratungen</span>
+        <h1>Ihre Consultants liefern exzellente Projekte. Jetzt sollen sie auch Folgemandate gewinnen.</h1>
+        <p class="lead">Mandat ist die persönliche Lernplattform, die Beraterinnen und Beratern kommerzielle Kompetenz vermittelt – an ihren echten Kundensituationen, nicht im Seminarraum.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#pilot">Pilot anfragen</a>
+          <a class="btn btn-ghost" href="demo.html">Klickbare Demo ansehen →</a>
+        </div>
+        <p class="hero-note">Basierend auf SPIN Selling, MEDDPICC und Consultative Selling – übersetzt in die Sprache der Beratung.</p>
+      </div>
+
+      <div class="mock" aria-hidden="true">
+        <div class="card">
+          <div class="mock-top">
+            <div>
+              <div class="mock-title">Dein Lernpfad, Lea</div>
+              <div class="mock-meta">Senior Consultant · Operations Practice</div>
+            </div>
+            <span class="tag">Woche 3</span>
+          </div>
+          <div class="progress"><i style="width: 42%"></i></div>
+          <ul class="mock-steps">
+            <li><span class="dot done">✓</span> Chancen im Projektalltag erkennen</li>
+            <li><span class="dot done">✓</span> SPIN im Projektalltag</li>
+            <li><span class="dot now">3</span> Rollenspiel: Kaffee nach dem Steering</li>
+            <li><span class="dot todo">4</span> MEDDPICC für Folgemandate</li>
+            <li><span class="dot todo">5</span> Der Business Case des Kunden</li>
+          </ul>
+        </div>
+        <div class="card mock-float">
+          <b>📅 Dein nächster Termin</b>
+          Steering Committee Brenner AG, Donnerstag. <span class="muted">Vorbereitung mit MEDDPICC-Check starten?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Das Seller-Doer-Dilemma</span>
+        <h2>Ab dem Manager-Level wird Umsatz erwartet. Beigebracht wird er nie.</h2>
+        <p>In Beratungen sind die besten Verkäufer die, die das Projekt liefern. Doch die meisten Consultants haben nie gelernt, wie man aus Vertrauen ein Mandat macht.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card pain">
+          <div class="num">01</div>
+          <h3>Chancen bleiben im Projekt liegen</h3>
+          <p class="muted">Der Kunde erwähnt beim Kaffee ein neues Problem. Der Consultant nickt – und kehrt zur Folie zurück. Das Folgemandat gewinnt später jemand anderes.</p>
+        </div>
+        <div class="card pain">
+          <div class="num">02</div>
+          <h3>Vertriebstrainings passen nicht</h3>
+          <p class="muted">Klassische Sales-Seminare fühlen sich für Berater nach „Verkaufen“ an. Die Folge: Abwehr, kein Transfer, kein Effekt auf die Pipeline.</p>
+        </div>
+        <div class="card pain">
+          <div class="num">03</div>
+          <h3>Die Partner tragen alles allein</h3>
+          <p class="muted">Business Development hängt an wenigen Köpfen. Das begrenzt Wachstum – und die Karrierechancen der nächsten Generation.</p>
+        </div>
+      </div>
+      <div class="quote">
+        Consultants müssen keine Verkäufer werden. Sie müssen lernen, die richtigen Fragen zu stellen – im richtigen Moment.
+      </div>
+    </div>
+  </section>
+
+  <!-- ANSATZ -->
+  <section id="ansatz">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">University of One</span>
+        <h2>Eine Lernumgebung für genau eine Person.</h2>
+        <p>Kein Kurskatalog, sondern ein persönlicher Pfad: Mandat startet bei der Rolle, den Kundensituationen und den Lücken jedes Einzelnen – und begleitet bis in den nächsten echten Termin.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card step">
+          <div class="n">1</div>
+          <h3>Diagnose</h3>
+          <p class="muted">Rolle, typische Kundenmomente und Selbsteinschätzung in zehn Minuten. Daraus entsteht der persönliche Lernpfad.</p>
+        </div>
+        <div class="card step">
+          <div class="n">2</div>
+          <h3>Mikro-Lektionen</h3>
+          <p class="muted">5–10 Minuten, mit Beispielen aus dem Beratungsalltag: Steering Committees, Workshops, Projektabschlüsse.</p>
+        </div>
+        <div class="card step">
+          <div class="n">3</div>
+          <h3>Üben mit dem KI-Kunden</h3>
+          <p class="muted">Rollenspiele mit realistischen Entscheidern – vom skeptischen CFO bis zum Einkauf. Mit Feedback nach jeder Frage.</p>
+        </div>
+        <div class="card step">
+          <div class="n">4</div>
+          <h3>Anwenden am echten Fall</h3>
+          <p class="muted">Vorbereitung des nächsten Kundentermins mit MEDDPICC-Check und passenden SPIN-Fragen. Hier entsteht der Impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHODIK -->
+  <section id="methodik" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Methodik</span>
+        <h2>Bewährte Vertriebsmethoden – übersetzt für Berater.</h2>
+        <p>Drei etablierte Frameworks, konsequent auf den Beratungskontext zugeschnitten und von erfahrenen Vertriebspraktikern entwickelt.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card method">
+          <h3><span class="tag spin">SPIN</span> Fragen statt präsentieren</h3>
+          <p class="muted">Situation, Problem, Implication, Need-Payoff.</p>
+          <ul>
+            <li>Beiläufige Hinweise des Kunden aufgreifen</li>
+            <li>Auswirkungen greifbar machen, bevor eine Lösung fällt</li>
+            <li>Den Kunden den Nutzen selbst formulieren lassen</li>
+          </ul>
+          <div class="translate"><b>Im Beratungsalltag:</b> das Gespräch nach dem Steering Committee, das zum Folgeprojekt wird.</div>
+        </div>
+        <div class="card method">
+          <h3><span class="tag medd">MEDDPICC</span> Chancen ehrlich qualifizieren</h3>
+          <p class="muted">Metrics, Economic Buyer, Decision Criteria &amp; Process, Paper Process, Pain, Champion, Competition.</p>
+          <ul>
+            <li>Wer entscheidet wirklich – und wer zahlt?</li>
+            <li>Welche Kennzahl macht das Mandat für den Kunden wertvoll?</li>
+            <li>Wettbewerb erkennen – inklusive „machen wir intern“</li>
+          </ul>
+          <div class="translate"><b>Im Beratungsalltag:</b> ein Folgemandat sauber briefen, bevor der Partner das Angebot schreibt.</div>
+        </div>
+        <div class="card method">
+          <h3><span class="tag cons">Consultative</span> Vertrauen in Wert übersetzen</h3>
+          <p class="muted">Trusted-Advisor-Haltung mit kommerziellem Blick.</p>
+          <ul>
+            <li>Das Geschäftsmodell des Kunden verstehen</li>
+            <li>Business Cases gemeinsam mit dem Kunden rechnen</li>
+            <li>Einwände als Einladung zum Gespräch nutzen</li>
+          </ul>
+          <div class="translate"><b>Im Beratungsalltag:</b> vom „Dienstleister“ zum Sparringspartner der Geschäftsführung.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER -->
+  <section id="partner">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Für Partner &amp; Practice Leads</span>
+        <h2>Sichtbar machen, was im Team kommerziell passiert.</h2>
+        <p class="muted" style="font-size:1.1rem">Sie investieren in Ihre Leute – und wollen sehen, dass es ankommt. Mandat zeigt Entwicklung und Wirkung, ohne Ihre Consultants zu überwachen.</p>
+        <ul class="checklist" style="margin-top:24px">
+          <li><div><b>Kompetenzentwicklung im Team</b><br><span class="muted">SPIN, MEDDPICC und Consultative Selling – vorher und nachher, aggregiert.</span></div></li>
+          <li><div><b>Erkannte Folgechancen</b><br><span class="muted">Welche Opportunities Consultants identifiziert und an Partner übergeben haben.</span></div></li>
+          <li><div><b>Coaching-Impulse für Führungskräfte</b><br><span class="muted">Jede Woche eine konkrete Frage für das nächste Gespräch mit Ihren Leuten.</span></div></li>
+          <li><div><b>Transfer statt Teilnahmequote</b><br><span class="muted">Gemessen wird Anwendung im Projekt, nicht absolvierte Videominuten.</span></div></li>
+        </ul>
+        <p style="margin-top:28px"><a class="btn btn-dark" href="demo.html#partner">Partner-Ansicht in der Demo öffnen →</a></p>
+      </div>
+      <div class="card privacy">
+        <h3>🔒 Datenschutz von Anfang an</h3>
+        <p>Vertrauen ist die Voraussetzung dafür, dass Consultants offen üben – auch Fehler machen.</p>
+        <ul>
+          <li>Auswertungen für Führungskräfte ausschließlich aggregiert ab einer Mindestgruppengröße</li>
+          <li>Rollenspiel-Ergebnisse gehören dem Lernenden</li>
+          <li>Freigabe einzelner Opportunities nur durch den Consultant selbst</li>
+          <li>Konzipiert für DSGVO und die Abstimmung mit dem Betriebsrat</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILOT -->
+  <section id="pilot" class="pilot">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Pilotprogramm</span>
+        <h2>8 Wochen. 10–20 Consultants. Ein klares Ergebnis.</h2>
+        <p>Wir suchen Beratungen, die Mandat gemeinsam mit uns erproben und weiterentwickeln wollen.</p>
+      </div>
+      <div class="pilot-grid">
+        <ul class="checklist">
+          <li>Kick-off mit Partnern: Ziele und kommerzielle Kennzahlen festlegen</li>
+          <li>Persönliche Lernpfade für alle Teilnehmenden</li>
+          <li>Rollenspiele zugeschnitten auf Ihre Practice und Ihre Kundentypen</li>
+          <li>Begleitung echter Kundensituationen mit MEDDPICC-Check</li>
+          <li>Abschlussauswertung: Kompetenzentwicklung und identifizierte Folgechancen</li>
+        </ul>
+        <form class="card" id="pilot-form">
+          <label for="f-name">Name</label>
+          <input id="f-name" required placeholder="Vor- und Nachname" />
+          <label for="f-firm">Beratung</label>
+          <input id="f-firm" required placeholder="Unternehmen" />
+          <label for="f-role">Ihre Rolle</label>
+          <select id="f-role">
+            <option>Partner / Managing Director</option>
+            <option>Practice Lead</option>
+            <option>Learning &amp; Development</option>
+            <option>Andere</option>
+          </select>
+          <label for="f-size">Anzahl Consultants in Ihrer Einheit</label>
+          <select id="f-size">
+            <option>unter 20</option>
+            <option>20–100</option>
+            <option>100–500</option>
+            <option>über 500</option>
+          </select>
+          <button class="btn btn-primary" type="submit" style="width:100%">Pilot anfragen</button>
+          <div class="form-ok" id="form-ok" style="margin-top:14px">Danke! (Demo: Das Formular ist noch nicht an ein System angebunden.)</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© 2026 Mandat · Arbeitstitel</span>
+    <span><a href="demo.html">Demo</a> · <a href="#pilot">Pilot</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('pilot-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('form-ok').style.display = 'block';
+    this.querySelector('button').disabled = true;
+  });
+</script>
 </body>
 </html>
